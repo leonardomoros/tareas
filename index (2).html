@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asignaciones Completas – Lengua y Literatura Castellana</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #FAFAF7;
+  --surface: #FFFFFF;
+  --border: #E2DDD5;
+  --accent: #1A3A5C;
+  --accent2: #8B1A1A;
+  --gold: #B8860B;
+  --text: #1C1C1E;
+  --muted: #6B6560;
+  --light-bg: #F4F0EA;
+  --tag-bg: #EBF0F7;
+  --tag-text: #1A3A5C;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Lora', Georgia, serif;
+  font-size: 15.5px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── PRINT ── */
+@media print {
+  .nav-sidebar, .nav-toggle { display: none !important; }
+  .content-area { margin-left: 0 !important; }
+  .tema-section { page-break-inside: avoid; }
+  .sub-section { page-break-inside: avoid; }
+}
+
+/* ── LAYOUT ── */
+.layout { display: flex; min-height: 100vh; }
+
+/* ── SIDEBAR ── */
+.nav-sidebar {
+  width: 260px;
+  min-width: 260px;
+  background: var(--accent);
+  color: #fff;
+  padding: 2rem 0;
+  position: fixed;
+  top: 0; left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+.nav-sidebar h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  padding: 0 1.5rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 1rem;
+}
+.nav-item {
+  display: block;
+  padding: 0.65rem 1.5rem;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  border-left: 3px solid transparent;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.nav-item:hover, .nav-item.active {
+  background: rgba(255,255,255,0.08);
+  border-left-color: #C8A96E;
+  color: #fff;
+}
+.nav-item .num { color: #C8A96E; font-weight: 600; margin-right: 0.4rem; }
+.nav-sub {
+  padding: 0.4rem 1.5rem 0.4rem 2.8rem;
+  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-sub:hover { color: rgba(255,255,255,0.85); }
+
+/* ── CONTENT ── */
+.content-area {
+  margin-left: 260px;
+  flex: 1;
+  max-width: 100%;
+}
+
+/* ── HEADER ── */
+.page-header {
+  background: var(--accent);
+  color: #fff;
+  padding: 3rem 3rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '"';
+  font-family: 'Playfair Display', serif;
+  font-size: 18rem;
+  color: rgba(255,255,255,0.04);
+  position: absolute;
+  top: -3rem; right: 1rem;
+  line-height: 1;
+}
+.page-header .eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 0.8rem;
+}
+.page-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+.page-header .sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  font-family: 'Inter', sans-serif;
+}
+.badge-row {
+  display: flex; gap: 0.6rem; flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.badge {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 0.3rem 0.9rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.8);
+}
+
+/* ── MAIN CONTENT ── */
+.content-inner { padding: 3rem; max-width: 820px; }
+
+/* ── TEMA SECTION ── */
+.tema-section {
+  margin-bottom: 4rem;
+  scroll-margin-top: 2rem;
+}
+.tema-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+.tema-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+/* ── SUB-SECTION ── */
+.sub-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  scroll-margin-top: 2rem;
+}
+.sub-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--accent2);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.sub-title .icon { font-size: 1.1rem; }
+
+/* ── TYPOGRAPHY ── */
+h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 1.2rem 0 0.4rem;
+}
+p { margin-bottom: 0.9rem; color: var(--text); }
+p:last-child { margin-bottom: 0; }
+
+/* ── TABLE (glossary) ── */
+.glossary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-top: 0.5rem;
+}
+.glossary-table th {
+  background: var(--accent);
+  color: #fff;
+  padding: 0.6rem 0.9rem;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.glossary-table td {
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.glossary-table tr:last-child td { border-bottom: none; }
+.glossary-table tr:nth-child(even) { background: var(--light-bg); }
+.glossary-table .term { font-weight: 600; color: var(--accent); font-style: italic; }
+
+/* ── FORMAL DOCS ── */
+.formal-doc {
+  background: #FEFEFE;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  padding: 2rem 2.2rem;
+  font-family: 'Lora', serif;
+  font-size: 14.5px;
+  line-height: 1.9;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+  position: relative;
+}
+.formal-doc .doc-place { text-align: right; margin-bottom: 1.5rem; color: var(--muted); font-size: 13.5px; }
+.formal-doc .doc-subject {
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  margin: 1.2rem 0;
+  color: var(--accent);
+}
+.formal-doc .doc-ref {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.formal-doc .doc-sign { margin-top: 2rem; }
+.formal-doc .sign-line {
+  border-top: 1px solid var(--text);
+  width: 220px;
+  margin-top: 2.5rem;
+  padding-top: 0.3rem;
+  font-size: 13px;
+}
+
+/* ── DISCOURSE ── */
+.discourse {
+  border-left: 4px solid var(--gold);
+  padding-left: 1.5rem;
+  font-style: italic;
+}
+.discourse p { margin-bottom: 1rem; }
+.discourse-tag {
+  display: inline-block;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+  padding: 0.1rem 0.5rem;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── ARTICLE ── */
+.article-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.4rem;
+  color: var(--text);
+}
+.article-byline {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.article-lead {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  color: var(--text);
+  font-style: italic;
+}
+
+/* ── ANALYSIS ── */
+.analysis-section { margin-bottom: 1.2rem; }
+.analysis-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: 0.3rem;
+}
+
+/* ── MOBILE ── */
+.nav-toggle {
+  display: none;
+  position: fixed;
+  top: 1rem; left: 1rem;
+  z-index: 200;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .nav-toggle { display: block; }
+  .nav-sidebar { transform: translateX(-100%); }
+  .nav-sidebar.open { transform: translateX(0); }
+  .content-area { margin-left: 0; }
+  .content-inner { padding: 1.2rem 1rem; }
+  .page-header { padding: 4rem 1.2rem 2rem; }
+  .formal-doc { padding: 1.2rem; }
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+blockquote {
+  border-left: 3px solid var(--gold);
+  padding-left: 1rem;
+  color: var(--muted);
+  font-style: italic;
+  margin: 1rem 0;
+}
+</style>
+</head>
+<body>
+
+<button class="nav-toggle" onclick="toggleNav()" aria-label="Menú">☰</button>
+
+<div class="layout">
+
+<!-- ══ SIDEBAR ══ -->
+<nav class="nav-sidebar" id="sidebar">
+  <h2>Asignaciones</h2>
+  <a class="nav-item" href="#tema1"><span class="num">1</span> Lenguaje Científico</a>
+  <a class="nav-sub" href="#glosario">→ Glosario de términos</a>
+
+  <a class="nav-item" href="#tema2"><span class="num">2</span> Docs. Administrativos</a>
+  <a class="nav-sub" href="#carta-res">→ Carta de Residencia</a>
+  <a class="nav-sub" href="#expo-mot">→ Exposición de Motivos</a>
+  <a class="nav-sub" href="#memorandum">→ Memorándum</a>
+
+  <a class="nav-item" href="#tema3"><span class="num">3</span> Discurso Público</a>
+  <a class="nav-sub" href="#disc-pers">→ Discurso Persuasivo</a>
+  <a class="nav-sub" href="#disc-info">→ Discurso Informativo</a>
+  <a class="nav-sub" href="#disc-cere">→ Discurso Ceremonial</a>
+
+  <a class="nav-item" href="#tema4"><span class="num">4</span> Art. de Divulgación</a>
+  <a class="nav-sub" href="#articulo">→ El Hombre de la Tierra</a>
+
+  <a class="nav-item" href="#tema5"><span class="num">5</span> Lit. Venezolana</a>
+  <a class="nav-sub" href="#analisis">→ Análisis: Doña Bárbara</a>
+</nav>
+
+<!-- ══ CONTENT ══ -->
+<div class="content-area">
+
+<header class="page-header">
+  <p class="eyebrow">Lengua y Literatura Castellana · Período 2026</p>
+  <h1>Asignaciones Completas</h1>
+  <p class="sub">Caracas, 10 de junio de 2026</p>
+  <div class="badge-row">
+    <span class="badge">5 Temas</span>
+    <span class="badge">10 Actividades</span>
+    <span class="badge">Lengua y Literatura Castellana</span>
+  </div>
+</header>
+
+<div class="content-inner">
+
+<!-- ════════════════════════════════════
+     TEMA 1 – LENGUAJE CIENTÍFICO
+════════════════════════════════════ -->
+<section class="tema-section" id="tema1">
+  <p class="tema-label">Tema #1</p>
+  <h2 class="tema-title">Lenguaje Científico y Técnico</h2>
+
+  <div class="sub-section" id="glosario">
+    <div class="sub-title"><span class="icon">📖</span> Glosario de Términos Científicos y Técnicos</div>
+
+    <p>El <strong>lenguaje científico y técnico</strong> es aquel utilizado por especialistas en diversas disciplinas del conocimiento. Se caracteriza por su precisión, objetividad, universalidad y monosemia (cada término posee un único significado dentro de su campo). A continuación se presenta un glosario de términos fundamentales:</p>
+
+    <table class="glossary-table">
+      <thead>
+        <tr><th>#</th><th>Término</th><th>Definición</th><th>Disciplina</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td class="term">Hipótesis</td><td>Suposición o conjetura provisional formulada para ser verificada o refutada mediante experimentación o investigación.</td><td>Metodología científica</td></tr>
+        <tr><td>2</td><td class="term">Átomo</td><td>Unidad mínima de un elemento químico que conserva sus propiedades. Está compuesto por núcleo (protones y neutrones) y electrones.</td><td>Química / Física</td></tr>
+        <tr><td>3</td><td class="term">Célula</td><td>Unidad estructural y funcional básica de todos los seres vivos. Puede ser procariota (sin núcleo definido) o eucariota (con núcleo).</td><td>Biología</td></tr>
+        <tr><td>4</td><td class="term">Ecosistema</td><td>Sistema natural formado por un conjunto de seres vivos (biocenosis) y el medio físico donde se relacionan (biotopo), interactuando como una unidad.</td><td>Ecología</td></tr>
+        <tr><td>5</td><td class="term">Metabolismo</td><td>Conjunto de reacciones químicas que ocurren en los organismos vivos para obtener energía (catabolismo) y sintetizar moléculas (anabolismo).</td><td>Bioquímica</td></tr>
+        <tr><td>6</td><td class="term">Síntesis</td><td>Proceso de formación de compuestos complejos a partir de elementos o compuestos más simples. En química: síntesis orgánica, inorgánica.</td><td>Química</td></tr>
+        <tr><td>7</td><td class="term">Entropía</td><td>Medida del desorden o la aleatoriedad de un sistema. La Segunda Ley de la Termodinámica establece que la entropía de un sistema aislado tiende a aumentar.</td><td>Física / Termodinámica</td></tr>
+        <tr><td>8</td><td class="term">ADN</td><td>Ácido desoxirribonucleico. Molécula que contiene la información genética de los seres vivos, organizada en secuencias llamadas genes.</td><td>Biología Molecular</td></tr>
+        <tr><td>9</td><td class="term">Erosión</td><td>Proceso de desgaste y transporte de materiales de la superficie terrestre causado por agentes externos como el agua, el viento y el hielo.</td><td>Geología</td></tr>
+        <tr><td>10</td><td class="term">Fotosíntesis</td><td>Proceso bioquímico mediante el cual las plantas, algas y algunas bacterias convierten la energía lumínica en energía química (glucosa), utilizando CO₂ y H₂O.</td><td>Biología / Botánica</td></tr>
+        <tr><td>11</td><td class="term">Algoritmo</td><td>Conjunto ordenado y finito de pasos o instrucciones que permiten resolver un problema o ejecutar una tarea de forma sistemática.</td><td>Informática / Matemáticas</td></tr>
+        <tr><td>12</td><td class="term">Catálisis</td><td>Aceleración de una reacción química producida por una sustancia denominada catalizador, la cual no se consume en el proceso.</td><td>Química</td></tr>
+        <tr><td>13</td><td class="term">Paradigma</td><td>Modelo o marco de referencia conceptual aceptado por una comunidad científica que orienta la investigación y la interpretación de fenómenos.</td><td>Filosofía de la Ciencia</td></tr>
+        <tr><td>14</td><td class="term">Simbiosis</td><td>Relación estrecha y persistente entre organismos de distintas especies. Puede ser mutualismo, comensalismo o parasitismo según el beneficio de cada parte.</td><td>Biología / Ecología</td></tr>
+        <tr><td>15</td><td class="term">Nanotecnología</td><td>Campo de la ciencia y la ingeniería que estudia y manipula la materia a escala nanométrica (1–100 nanómetros) para desarrollar nuevos materiales y dispositivos.</td><td>Física / Ingeniería</td></tr>
+        <tr><td>16</td><td class="term">Estequiometría</td><td>Rama de la química que estudia las relaciones cuantitativas entre reactivos y productos en una reacción química, basándose en la Ley de Conservación de la Masa.</td><td>Química</td></tr>
+        <tr><td>17</td><td class="term">Homeostasis</td><td>Capacidad de un organismo o sistema para mantener un estado de equilibrio interno estable frente a los cambios del entorno externo.</td><td>Fisiología / Biología</td></tr>
+        <tr><td>18</td><td class="term">Vector</td><td>En física: magnitud que posee módulo, dirección y sentido. En biología: organismo que transmite un agente patógeno de un hospedador a otro.</td><td>Física / Epidemiología</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="divider">
+    <h3>Características del Lenguaje Científico y Técnico</h3>
+    <p><strong>Precisión:</strong> Cada término posee un significado exacto y específico, evitando la ambigüedad propia del lenguaje cotidiano.</p>
+    <p><strong>Objetividad:</strong> Se excluye toda subjetividad o emotividad. El lenguaje científico describe la realidad tal como es, no como se siente.</p>
+    <p><strong>Universalidad:</strong> Los términos científicos son reconocidos internacionalmente, muchos derivados del latín o griego clásico.</p>
+    <p><strong>Monosemia:</strong> Un mismo término posee un único significado dentro de su campo disciplinario, a diferencia del lenguaje común que puede ser polisémico.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     TEMA 2 – DOCUMENTOS ADMINISTRATIVOS
+════════════════════════════════════ -->
+<section class="tema-section" id="tema2">
+  <p class="tema-label">Tema #2</p>
+  <h2 class="tema-title">Redacción de Documentos Administrativos</h2>
+
+  <!-- CARTA DE RESIDENCIA -->
+  <div class="sub-section" id="carta-res">
+    <div class="sub-title"><span class="icon">🏠</span> Carta de Residencia</div>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:1.2rem;">Documento formal que certifica que una persona reside en una dirección determinada. Es emitida por el Consejo Comunal, una autoridad civil o el propio interesado con testigos.</p>
+
+    <div class="formal-doc">
+      <p class="doc-place">Caracas, 10 de junio de 2026</p>
+
+      <p class="doc-subject">Carta de Residencia</p>
+
+      <p>Yo, <strong>Carlos Eduardo Ramírez Pérez</strong>, titular de la Cédula de Identidad N° V-18.452.317, de estado civil soltero, mayor de edad, domiciliado en esta ciudad, por medio de la presente hago constar:</p>
+
+      <p>Que el ciudadano(a) <strong>Luis Alberto Morales Gutiérrez</strong>, titular de la Cédula de Identidad N° V-22.674.819, reside de manera permanente y efectiva en la siguiente dirección:</p>
+
+      <blockquote>Urbanización La California Norte, Calle 4, Edificio Residencias Paraíso, Piso 3, Apartamento 3-B, Parroquia Leoncio Martínez, Municipio Sucre, Estado Miranda, Caracas, Venezuela. Código Postal: 1073.</blockquote>
+
+      <p>Dicha residencia es de carácter fijo y continuo desde el mes de <strong>marzo del año 2019</strong>, hecho del cual doy fe en mi condición de vecino y conocedor directo de la situación descrita.</p>
+
+      <p>La presente constancia se expide a solicitud del interesado para los fines legales que estime convenientes.</p>
+
+      <p>Sin otro particular al cual hacer referencia,</p>
+
+      <div class="doc-sign">
+        <div class="sign-line">Carlos E. Ramírez Pérez<br>C.I.: V-18.452.317<br>Tlf.: 0412-345-6789</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPOSICIÓN DE MOTIVOS -->
+  <div class="sub-section" id="expo-mot">
+    <div class="sub-title"><span class="icon">🏡</span> Exposición de Motivos – Compra de una Casa</div>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:1.2rem;">Documento argumentativo-administrativo que justifica y sustenta una decisión o solicitud ante una entidad, institución o particular.</p>
+
+    <div class="formal-doc">
+      <p class="doc-place">Caracas, 10 de junio de 2026</p>
+
+      <p class="doc-subject">Exposición de Motivos<br><span style="font-size:12px; font-weight:400; text-transform:none;">Adquisición de Inmueble Residencial</span></p>
+
+      <p>Ciudadano(a)<br><strong>Director(a) de la Entidad Bancaria Banco de Venezuela</strong><br>Su Despacho.-</p>
+
+      <p>Yo, <strong>María Fernanda Castillo López</strong>, venezolana, mayor de edad, titular de la Cédula de Identidad N° V-20.315.448, con domicilio en Caracas, Distrito Capital, respetuosamente me dirijo a usted a fin de exponer las razones que motivan mi solicitud de crédito hipotecario para la adquisición de vivienda propia:</p>
+
+      <h3>I. Situación Habitacional Actual</h3>
+      <p>En la actualidad habito en condición de arrendataria en un apartamento de 60 m² ubicado en la Urbanización Los Palos Grandes. El contrato de arrendamiento vigente genera un compromiso económico mensual considerable que, a largo plazo, no representa inversión patrimonial alguna. Esta situación motiva la necesidad urgente de contar con vivienda propia.</p>
+
+      <h3>II. Inmueble de Interés</h3>
+      <p>El inmueble que se desea adquirir corresponde a una casa ubicada en la Urbanización La Trinidad, Municipio Baruta, Estado Miranda, con una extensión de 120 m² de construcción sobre un terreno de 200 m². El inmueble cuenta con tres (3) habitaciones, dos (2) baños, sala-comedor, cocina, lavadero y estacionamiento para dos (2) vehículos. Su valor de mercado es de <strong>Bs. 45.000,00</strong> (cuarenta y cinco mil bolívares).</p>
+
+      <h3>III. Capacidad de Pago</h3>
+      <p>Me desempeño como Licenciada en Administración de Empresas en la firma Corporación Industrial del Sur, C.A., con una antigüedad de siete (7) años, devengando un ingreso mensual de Bs. 8.200,00. Adicionalmente, poseo ahorros acumulados que cubren el veinticinco por ciento (25%) del valor total del inmueble como cuota inicial.</p>
+
+      <h3>IV. Fundamentación Legal</h3>
+      <p>El derecho a la vivienda digna está consagrado en el artículo 82 de la Constitución de la República Bolivariana de Venezuela, que establece que "toda persona tiene derecho a una vivienda adecuada, segura, cómoda, higiénicas, con servicios básicos esenciales". En tal sentido, la presente solicitud se enmarca en el pleno ejercicio de este derecho constitucional.</p>
+
+      <h3>V. Conclusión</h3>
+      <p>Por las razones anteriormente expuestas, solicito respetuosamente la aprobación del crédito hipotecario correspondiente, comprometiéndome a cumplir con todas las obligaciones contractuales derivadas de dicha operación.</p>
+
+      <p>Sin otro particular,</p>
+      <div class="doc-sign">
+        <div class="sign-line">María F. Castillo López<br>C.I.: V-20.315.448<br>Tlf.: 0424-789-0123</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEMORÁNDUM -->
+  <div class="sub-section" id="memorandum">
+    <div class="sub-title"><span class="icon">📋</span> Memorándum por Motivo de Despido</div>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:1.2rem;">Comunicación interna de carácter oficial utilizada dentro de una organización. En este caso, notifica la terminación de la relación laboral.</p>
+
+    <div class="formal-doc">
+      <p class="doc-ref">MEMORÁNDUM Nº DRH-2026-047</p>
+      <p class="doc-place">Caracas, 10 de junio de 2026</p>
+
+      <p><strong>PARA:</strong> Señor Juan Pablo Herrera Díaz — Asistente de Logística<br>
+      <strong>DE:</strong> Departamento de Recursos Humanos<br>
+      <strong>ASUNTO:</strong> Notificación de Terminación de la Relación Laboral<br>
+      <strong>REF.:</strong> Expediente Personal N° 2019-0087</p>
+
+      <hr class="divider">
+
+      <p>Por medio del presente memorándum, la Dirección de Recursos Humanos de <strong>Industrias Venezolanas Consolidated, C.A.</strong>, le notifica formalmente la decisión de dar por terminada la relación laboral que lo une con esta empresa, con efectividad a partir del día <strong>15 de junio de 2026</strong>.</p>
+
+      <p>La presente decisión obedece a las siguientes causas debidamente documentadas:</p>
+
+      <p><strong>1. Ausencias injustificadas:</strong> Se registraron doce (12) días de inasistencia durante los últimos tres meses sin la presentación de justificativo médico o autorización previa de su supervisor inmediato, contraviniendo lo establecido en el Reglamento Interno de la empresa.</p>
+
+      <p><strong>2. Incumplimiento de funciones:</strong> En reiteradas oportunidades se evidenció el incumplimiento de los procedimientos operativos estándar del área de logística, generando retrasos en la cadena de suministro que afectaron directamente la operatividad de la empresa.</p>
+
+      <p><strong>3. Llamadas de atención previas:</strong> Se registran dos (2) amonestaciones escritas formales fechadas el 14 de marzo y el 28 de abril del presente año, las cuales no produjeron la corrección esperada en la conducta laboral del trabajador.</p>
+
+      <p>Conforme a lo establecido en la <strong>Ley Orgánica del Trabajo, los Trabajadores y las Trabajadoras (LOTTT)</strong>, específicamente en sus artículos 79 y 80, la empresa procederá a liquidar todos los beneficios sociales que correspondan al trabajador según su antigüedad, incluyendo prestaciones sociales, vacaciones fraccionadas y demás conceptos de ley.</p>
+
+      <p>Se le solicita hacer entrega formal de los materiales, equipos y documentos pertenecientes a la empresa al Coordinador de Logística, ciudadano Roberto Salazar, a más tardar el <strong>13 de junio de 2026</strong>.</p>
+
+      <p>Para cualquier consulta relacionada con su liquidación, puede dirigirse al Departamento de Recursos Humanos en un horario de 8:00 a.m. a 12:00 m.</p>
+
+      <div class="doc-sign">
+        <div class="sign-line">Lic. Carmen Beatriz Alonzo<br>Directora de Recursos Humanos<br>Industrias Venezolanas Consolidated, C.A.</div>
+      </div>
+
+      <p style="margin-top:1.5rem; font-size:12px; color:var(--muted);">Copia: Expediente Personal · Dirección General · Archivo</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     TEMA 3 – DISCURSO PÚBLICO
+════════════════════════════════════ -->
+<section class="tema-section" id="tema3">
+  <p class="tema-label">Tema #3</p>
+  <h2 class="tema-title">La Ortografía y el Discurso Público</h2>
+
+  <!-- PERSUASIVO -->
+  <div class="sub-section" id="disc-pers">
+    <div class="sub-title"><span class="icon">🎯</span> Discurso Persuasivo</div>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:1.2rem;"><strong>Tema:</strong> La importancia de preservar el medio ambiente para las generaciones futuras. <strong>Contexto:</strong> Discurso ante estudiantes de bachillerato.</p>
+
+    <div class="discourse">
+      <span class="discourse-tag">Discurso Persuasivo</span>
+      <p>Buenas tardes, queridos compañeros y compañeras.</p>
+
+      <p>Hoy me dirijo a ustedes con una pregunta que nos afecta a todos: ¿qué mundo vamos a dejarle a quienes vienen después de nosotros?</p>
+
+      <p>Cada día, nuestro planeta pierde aproximadamente ciento cincuenta especies animales y vegetales de manera definitiva. Cada minuto, desaparece una extensión de bosque equivalente a treinta campos de fútbol. Y sin embargo, seguimos actuando como si el tiempo estuviese a nuestro favor. No lo está.</p>
+
+      <p>Sé que muchos piensan que el problema es demasiado grande para que una sola persona marque la diferencia. Eso mismo pensaron quienes encontraron la vacuna contra la polio, quienes abolieron la esclavitud, quienes llegaron a la luna. La grandeza de los cambios históricos siempre comenzó con la convicción de uno solo.</p>
+
+      <p>No les pido que abandonen sus vidas. Les pido algo mucho más sencillo y poderoso: conciencia. Reducir el uso de plásticos. Separar la basura. Cuestionar el consumo innecesario. Hablar con sus familias. Exigir a sus representantes locales políticas ambientales serias. Cada una de estas acciones, multiplicada por millones de personas, es la diferencia entre un planeta habitable y uno devastado.</p>
+
+      <p>Parafraseando al escritor venezolano Arturo Uslar Pietri: sembrar el petróleo fue el gran reto del siglo XX venezolano. Sembrar conciencia ambiental es el gran reto del siglo XXI para toda la humanidad.</p>
+
+      <p>No actuemos por obligación. Actuemos por amor: amor a este país, a esta tierra fértil y biodiversa que nos fue dada, y que tenemos la responsabilidad histórica de proteger.</p>
+
+      <p>El momento de actuar es ahora. Y ese momento somos nosotros.</p>
+
+      <p>Muchas gracias.</p>
+    </div>
+  </div>
+
+  <!-- INFORMATIVO -->
+  <div class="sub-section" id="disc-info">
+    <div class="sub-title"><span class="icon">📡</span> Discurso Informativo</div>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:1.2rem;"><strong>Tema:</strong> La inteligencia artificial y su impacto en la vida cotidiana. <strong>Contexto:</strong> Ponencia ante un foro estudiantil.</p>
+
+    <div class="discourse">
+      <span class="discourse-tag">Discurso Informativo</span>
+      <p>Buenos días a todos los presentes.</p>
+
+      <p>El objetivo de mi intervención de hoy es compartir con ustedes información clara y objetiva sobre uno de los fenómenos tecnológicos más importantes de nuestra época: la inteligencia artificial, comúnmente conocida como IA.</p>
+
+      <p>La inteligencia artificial es una rama de la informática que desarrolla sistemas capaces de realizar tareas que, hasta hace poco, requerían inteligencia humana: reconocer imágenes, traducir idiomas, tomar decisiones, generar texto y hasta crear obras de arte. Fue definida formalmente en 1956 por el matemático John McCarthy durante la Conferencia de Dartmouth.</p>
+
+      <p>Existen dos tipos fundamentales: la IA débil o estrecha, diseñada para una tarea específica —como el asistente de voz de tu teléfono o el sistema de recomendaciones de Netflix—, y la IA general, aún en desarrollo teórico, que podría realizar cualquier tarea cognitiva que realice un ser humano.</p>
+
+      <p>Hoy la IA está presente en múltiples aspectos de nuestra vida cotidiana. En medicina, los algoritmos de IA detectan ciertos tipos de cáncer con mayor precisión que los radiólogos especializados. En educación, los sistemas adaptativos personalizan el contenido según el ritmo de aprendizaje de cada estudiante. En economía, los mercados financieros utilizan IA para analizar millones de datos en fracciones de segundo y tomar decisiones de inversión.</p>
+
+      <p>Sin embargo, su expansión también plantea desafíos importantes: la privacidad de los datos, el sesgo algorítmico, y el impacto sobre el mercado laboral son temas que los gobiernos, académicos y ciudadanos debaten activamente.</p>
+
+      <p>Comprender estas tecnologías no es optativo para las generaciones que habitamos el siglo XXI. Es una necesidad para participar de manera informada en la sociedad contemporánea.</p>
+
+      <p>Espero que esta información les haya resultado útil. Quedo disponible para cualquier pregunta al finalizar la sesión.</p>
+
+      <p>Muchas gracias.</p>
+    </div>
+  </div>
+
+  <!-- CEREMONIAL -->
+  <div class="sub-section" id="disc-cere">
+    <div class="sub-title"><span class="icon">🎓</span> Discurso Ceremonial</div>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:1.2rem;"><strong>Tema:</strong> Acto de graduación de bachilleres. <strong>Contexto:</strong> Discurso del orador de la promoción.</p>
+
+    <div class="discourse">
+      <span class="discourse-tag">Discurso Ceremonial</span>
+      <p>Ciudadana directora, estimado cuerpo de profesores, familiares, amigos y compañeros de la Promoción 2026:</p>
+
+      <p>Hay momentos en la vida de una persona que no se miden en segundos, sino en significados. Este es uno de ellos.</p>
+
+      <p>Hace cinco años cruzamos por primera vez las puertas de esta institución. Llegamos con mochilas llenas de cuadernos y corazones llenos de incertidumbre. Hoy nos vamos con la certeza de lo aprendido, con la gratitud de lo vivido y con la responsabilidad de lo que aún está por construir.</p>
+
+      <p>Quiero agradecer, en nombre de todos mis compañeros, a quienes hicieron posible este camino. A nuestros profesores: su vocación trasciende el pizarrón. Ustedes no enseñan materias; forman personas. A nuestros padres y representantes: gracias por el esfuerzo silencioso de cada mañana, por la paciencia en cada noche de estudio, por creer en nosotros incluso cuando nosotros mismos dudábamos.</p>
+
+      <p>Esta promoción nació en tiempos difíciles. Vivimos una pandemia, crisis económicas, desafíos sociales que pusieron a prueba no solo nuestros conocimientos sino nuestra resiliencia. Y aquí estamos. En pie. Graduados. Eso no es poca cosa.</p>
+
+      <p>Parafraseando al maestro Simón Rodríguez, el gran educador de Bolívar: "o inventamos o erramos". Nuestra generación tiene el deber histórico de inventar: nuevas soluciones, nuevas formas de convivir, una Venezuela distinta, construida desde el conocimiento y la dignidad.</p>
+
+      <p>El bachillerato no termina aquí: aquí comienza. Lo que guardamos de estos años no son las fechas ni las fórmulas; son los valores, la amistad y la capacidad de aprender. Llevamos eso a donde vayamos.</p>
+
+      <p>Compañeros de la Promoción 2026: que cada uno de nosotros sea, en su propio espacio, la respuesta que Venezuela necesita.</p>
+
+      <p>Con orgullo, con gratitud y con esperanza: ¡Bienvenidos a la vida!</p>
+
+      <p>Muchas gracias.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     TEMA 4 – ARTÍCULO DE DIVULGACIÓN
+════════════════════════════════════ -->
+<section class="tema-section" id="tema4">
+  <p class="tema-label">Tema #4</p>
+  <h2 class="tema-title">El Artículo de Divulgación</h2>
+
+  <div class="sub-section" id="articulo">
+    <div class="sub-title"><span class="icon">🌱</span> Artículo de Divulgación</div>
+
+    <div class="article-headline">El Hombre de la Tierra: El Secreto de la Recuperación de Suelos</div>
+    <p class="article-byline">Por: Redacción Científica Estudiantil · Caracas, junio de 2026 · Área: Ciencias de la Tierra y Ecología</p>
+
+    <p class="article-lead">En las profundidades del campo venezolano, entre surcos resecos y laderas erosionadas, existe un conocimiento ancestral que la ciencia moderna ha comenzado a redescubrir: el saber del campesino que escucha a la tierra y la devuelve a la vida.</p>
+
+    <h3>Un planeta herido bajo nuestros pies</h3>
+    <p>Según la Organización de las Naciones Unidas para la Alimentación y la Agricultura (FAO), más del 33% de los suelos del mundo se encuentran degradados por causas como la erosión hídrica y eólica, la compactación, la salinización y el uso excesivo de agroquímicos. En Venezuela, miles de hectáreas antes fértiles en los llanos, la cordillera andina y la región central han perdido su capacidad productiva en las últimas décadas.</p>
+
+    <p>El suelo no es simplemente tierra: es un ecosistema vivo. Un solo gramo de suelo fértil puede contener hasta un millón de bacterias, miles de hongos y cientos de organismos microscópicos que, trabajando en armonía, transforman la materia orgánica en nutrientes disponibles para las plantas. Cuando este equilibrio se rompe, el suelo muere lentamente.</p>
+
+    <h3>El saber que viene de abajo</h3>
+    <p>Pedro Useche tiene 67 años y lleva cuatro décadas trabajando la misma parcela en Barinas. Sin haber estudiado en ninguna universidad, conoce con precisión cuándo la tierra necesita descanso, qué plantas "llaman al agua" y cuáles abonan el suelo al descomponerse. "La tierra habla", dice Useche mientras revuelve con sus manos un puñado de tierra oscura y húmeda, "hay que saber escucharla".</p>
+
+    <p>Lo que Useche practica tiene nombre científico: agricultura regenerativa. Esta disciplina emergente combina técnicas agronómicas modernas con conocimientos tradicionales para restaurar los suelos degradados, aumentar la biodiversidad y mejorar la captación de carbono.</p>
+
+    <h3>Las técnicas de recuperación</h3>
+    <p><strong>Compostaje y materia orgánica:</strong> La incorporación de residuos orgánicos —hojas, estiércol, restos vegetales— al suelo aumenta su contenido de humus, mejora su estructura y reactiva la vida microbiana. Es la técnica más antigua y más efectiva conocida por la humanidad.</p>
+
+    <p><strong>Abono verde:</strong> Consiste en sembrar plantas leguminosas como el frijol abono o la mucuna, que fijan nitrógeno atmosférico en el suelo a través de nódulos en sus raíces. Luego se incorporan al suelo como abono. Useche lo llama simplemente "dejar que la tierra se cure sola con ayuda".</p>
+
+    <p><strong>Rotación de cultivos:</strong> Alternar diferentes tipos de plantas en la misma parcela previene el agotamiento de nutrientes específicos y rompe los ciclos de plagas y enfermedades. Una práctica tan antigua como la agricultura misma.</p>
+
+    <p><strong>Biochar:</strong> Carbón vegetal producido mediante pirolisis (quema sin oxígeno) de materia orgánica. Al incorporarse al suelo, mejora su capacidad de retener agua y nutrientes por siglos. Culturas precolombinas amazónicas ya lo utilizaban: las llamadas "tierras pretas" del Amazonas conservan su fertilidad excepcional luego de más de dos mil años.</p>
+
+    <h3>La ciencia confirma lo que el campesino sabía</h3>
+    <p>Investigadores del Instituto Nacional de Investigaciones Agrícolas (INIA) de Venezuela han documentado que parcelas recuperadas mediante técnicas agroecológicas pueden recuperar hasta el 80% de su capacidad productiva en un período de tres a cinco años, sin necesidad de insumos químicos costosos. La clave está en respetar los tiempos de la tierra.</p>
+
+    <p>"El problema no es la tierra", explica la investigadora Dra. Rosa Medina, especialista en edafología de la UCV, "el problema es que dejamos de escucharla. Los suelos tienen memoria y tienen capacidad de recuperación, si les damos las condiciones adecuadas".</p>
+
+    <h3>Un camino hacia el futuro</h3>
+    <p>La recuperación de suelos no es solo una cuestión agrícola: es una cuestión de soberanía alimentaria, de salud pública y de justicia ambiental. Cada hectárea de suelo recuperado es garantía de alimentos, de empleo rural y de resiliencia frente al cambio climático.</p>
+
+    <p>El hombre de la tierra, ese campesino que lleva décadas escuchando lo que los libros tardaron siglos en describir, nos muestra el camino. Ahora nos corresponde a todos aprender a caminar por él.</p>
+
+    <hr class="divider">
+    <p style="font-size:12.5px; color:var(--muted); font-style:italic;">Glosario del artículo: <strong>Edafología:</strong> ciencia que estudia la naturaleza y propiedades del suelo. <strong>Pirolisis:</strong> descomposición de sustancias mediante calor sin presencia de oxígeno. <strong>Humus:</strong> materia orgánica del suelo en estado avanzado de descomposición.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     TEMA 5 – LITERATURA VENEZOLANA
+════════════════════════════════════ -->
+<section class="tema-section" id="tema5">
+  <p class="tema-label">Tema #5</p>
+  <h2 class="tema-title">Literatura Venezolana Contemporánea</h2>
+
+  <div class="sub-section" id="analisis">
+    <div class="sub-title"><span class="icon">📚</span> Análisis Personal: <em>Doña Bárbara</em> de Rómulo Gallegos</div>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:1.5rem;"><strong>Obra:</strong> Doña Bárbara (1929) · <strong>Autor:</strong> Rómulo Gallegos (1884–1969) · <strong>Género:</strong> Novela regionalista / Novela de la tierra</p>
+
+    <div class="analysis-section">
+      <p class="analysis-label">I. Datos del autor</p>
+      <p><strong>Rómulo Gallegos</strong> fue escritor, educador y político venezolano, nacido en Caracas el 2 de agosto de 1884. Considerado uno de los más grandes novelistas de América Latina, fue además el primer presidente venezolano elegido democráticamente por voto universal, directo y secreto en 1948, cargo del cual fue derrocado ese mismo año por un golpe militar. Su obra literaria se caracteriza por la profunda vocación de retratar la realidad venezolana: sus llanos, sus gentes, sus conflictos sociales y su identidad nacional. Entre sus obras más destacadas se encuentran <em>Doña Bárbara</em> (1929), <em>Cantaclaro</em> (1934) y <em>Canaima</em> (1935).</p>
+    </div>
+
+    <div class="analysis-section">
+      <p class="analysis-label">II. Contexto histórico-social</p>
+      <p><em>Doña Bárbara</em> fue publicada en 1929, durante la dictadura del General Juan Vicente Gómez (1908–1935), período marcado por el autoritarismo, el atraso social, la ausencia de instituciones democráticas y el inicio de la era petrolera venezolana. Gallegos escribió la novela en parte como alegoría política: la barbarie del llano representaba la Venezuela gomecista, y el proyecto civilizador de Santos Luzardo encarnaba el anhelo democrático del autor.</p>
+      <p>La Venezuela de entonces era mayoritariamente rural, con estructuras de poder informal en los llanos —caciques y latifundistas— que ejercían una autoridad casi absoluta al margen del Estado. Este contexto es fundamental para comprender los conflictos de la novela.</p>
+    </div>
+
+    <div class="analysis-section">
+      <p class="analysis-label">III. Resumen de la obra</p>
+      <p>Santos Luzardo, joven abogado caraqueño formado en la ciudad, regresa al Llano venezolano para hacerse cargo de su hacienda "Altamira", heredada de su familia. Allí se enfrenta a Doña Bárbara, una poderosa y temida mujer que ha ido apoderándose de las tierras vecinas mediante el engaño, la violencia y sus supuestos poderes de hechicería. Doña Bárbara, cuyo nombre real es Barbarita, es una mujer marcada por un pasado de violencia y traición: siendo joven fue ultrajada por marineros, lo que le generó un profundo odio hacia los hombres y la determinación de dominarlos.</p>
+      <p>En medio del conflicto, Santos Luzardo conoce a Marisela, hija ilegítima de Doña Bárbara, una joven que ha crecido en estado salvaje y a quien Santos rescata y educa. Marisela representa la Venezuela en bruto que puede ser transformada mediante la educación y la civilización. El conflicto central entre Santos y Doña Bárbara es, en última instancia, el conflicto entre la ley y la barbarie, entre la razón y el instinto, entre la ciudad y el llano.</p>
+    </div>
+
+    <div class="analysis-section">
+      <p class="analysis-label">IV. Personajes principales</p>
+      <p><strong>Doña Bárbara:</strong> Personaje central y antagónico. Encarna la barbarie, el caudillismo y la Venezuela atrasada. Sin embargo, Gallegos la construye con una profunda humanidad: su maldad es producto de un trauma y de un sistema social que la oprimió. Es uno de los personajes femeninos más complejos y poderosos de la literatura hispanoamericana.</p>
+      <p><strong>Santos Luzardo:</strong> Protagonista. Representa la civilización, la ley y el progreso. Su nombre es altamente simbólico: "Santos" (virtud) y "Luzardo" (luz). Sin embargo, la novela muestra cómo incluso él debe ceder ante las reglas del llano, demostrando que la frontera entre civilización y barbarie es más permeable de lo que parece.</p>
+      <p><strong>Marisela:</strong> Hija de Doña Bárbara. Representa el pueblo venezolano en estado natural: ignorante pero con potencial. Su transformación a lo largo de la novela simboliza la posibilidad de redención y cambio social a través de la educación.</p>
+      <p><strong>Mr. Danger:</strong> Personaje secundario pero significativo. Extranjero norteamericano que se ha apropiado de tierras venezolanas usando artimañas. Simboliza el imperialismo y la penetración extranjera.</p>
+    </div>
+
+    <div class="analysis-section">
+      <p class="analysis-label">V. Tema central y temas secundarios</p>
+      <p>El <strong>tema central</strong> de la novela es la dicotomía civilización vs. barbarie, presente en toda la literatura hispanoamericana del siglo XIX y XX (desde Sarmiento en Argentina hasta Gallegos en Venezuela). Esta tensión se manifiesta en el conflicto entre Santos Luzardo y Doña Bárbara, entre la ciudad letrada y el llano primitivo.</p>
+      <p>Los <strong>temas secundarios</strong> incluyen: el rol de la mujer en la sociedad patriarcal venezolana; el poder y la corrupción; la educación como herramienta de transformación social; la identidad nacional venezolana; y la relación del hombre con la naturaleza llanera.</p>
+    </div>
+
+    <div class="analysis-section">
+      <p class="analysis-label">VI. Recursos literarios</p>
+      <p><strong>Simbolismo:</strong> Toda la novela funciona en un plano simbólico. Los personajes son arquetipos: Doña Bárbara es la barbarie, Santos es la civilización, Marisela es el pueblo. Los espacios también son simbólicos: el llano es Venezuela en bruto; "Altamira" es el ideal elevado.</p>
+      <p><strong>Personificación y descripción del llano:</strong> Gallegos describe el llano como un personaje más, dotado de vida propia, cambiante y poderoso. Sus descripciones de la naturaleza llanera son de una riqueza literaria extraordinaria.</p>
+      <p><strong>Lenguaje regionalista:</strong> La novela incorpora venezolanismos, voces del llano y expresiones populares que le otorgan autenticidad y riqueza lingüística al texto.</p>
+      <p><strong>Ironía:</strong> La transformación final de Doña Bárbara, que se aleja del llano dejando libre a Marisela, tiene una carga irónica profunda: la barbarie reconoce su derrota ante el amor maternal.</p>
+    </div>
+
+    <div class="analysis-section">
+      <p class="analysis-label">VII. Opinión crítica personal</p>
+      <p><em>Doña Bárbara</em> es mucho más que una novela de aventuras llaneras: es un proyecto de nación. Gallegos no solo narra, sino que propone. Su fe en la educación, en la ley y en la razón como instrumentos de transformación social refleja el pensamiento liberal ilustrado de su época.</p>
+      <p>Lo que más impresiona de la novela, incluso casi cien años después de su publicación, es la vigencia de sus conflictos. La tensión entre la institucionalidad y el poder informal, entre la ley escrita y la ley del más fuerte, entre el progreso y el atraso, sigue siendo dolorosamente pertinente en Venezuela y en América Latina.</p>
+      <p>El personaje de Doña Bárbara es, paradójicamente, el más moderno de la obra. Su complejidad psicológica, su historia de violencia y su capacidad de resiliencia la hacen más humana y más interesante que el propio protagonista. Gallegos la construyó como antagonista pero terminó creando un personaje que trasciende esa categoría: es villana y víctima al mismo tiempo, poderosa y frágil, cruel y capaz de amor.</p>
+      <p>En conclusión, leer <em>Doña Bárbara</em> es leer Venezuela: sus contradicciones, su belleza, su potencial y sus heridas. Es una obra fundamental no solo de la literatura venezolana, sino del patrimonio literario de toda Hispanoamérica.</p>
+    </div>
+
+    <hr class="divider">
+    <p style="font-size:12px; color:var(--muted);">Ficha bibliográfica: Gallegos, R. (1929). <em>Doña Bárbara</em>. Barcelona: Araluce. · Género: novela regionalista · Corriente: criollismo hispanoamericano · 25 capítulos.</p>
+  </div>
+</section>
+
+</div><!-- /content-inner -->
+</div><!-- /content-area -->
+</div><!-- /layout -->
+
+<script>
+function toggleNav() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+// Close sidebar on link click (mobile)
+document.querySelectorAll('.nav-item, .nav-sub').forEach(el => {
+  el.addEventListener('click', () => {
+    if (window.innerWidth <= 768) {
+      document.getElementById('sidebar').classList.remove('open');
+    }
+  });
+});
+// Highlight active nav item on scroll
+const sections = document.querySelectorAll('[id]');
+const navItems = document.querySelectorAll('.nav-item, .nav-sub');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navItems.forEach(n => {
+    n.classList.remove('active');
+    if (n.getAttribute('href') === '#' + current) n.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
